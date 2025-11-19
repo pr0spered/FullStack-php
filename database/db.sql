@@ -8,3 +8,9 @@ CREATE TABLE users (
     email VARCHAR(250),
     password VARCHAR(250)
 );
+
+CREATE TABLE movies (
+    movie_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    poster VARCHAR(100)
+);
