@@ -60,5 +60,26 @@
         echo '<p>'.$row["name"].'</p>';
         ?>
     </div>
+
+    <div class="clear"></div>
+
+    <div id="all-shows">
+        <?php
+        $sql = "SELECT * FROM shows WHERE movie_id = $movieId ORDER BY date, time";
+        $temp = "1st Jan, 0000";
+        if ($result = mysqli_query($conn, $sql)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $show_date = date("j M, D", strtotime($row['date']));
+                if ($show_date != $temp) {
+                    echo '<span id="date">'.$show_date.'</span>';
+                    $temp = $show_date;
+                }
+                $show_time = date("h:i A", strtotime($row['date'] . " " . $row['time']));
+                echo '<button class="show" id='.$row["show_id"].'>'.$show_time.'</button>';
+            }
+        }
+        mysqli_close($conn);
+        ?>
+    </div>
 </body>
 </html>
