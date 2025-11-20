@@ -33,12 +33,16 @@ body {
     font-size: 22px;
 }
 
-#login:hover {cursor: pointer;}
+#login:hover {
+    cursor: pointer;
+}
 
-#login:hover #login-drop {display: block; cursor: pointer;}
+#login:hover #login-drop {
+    display: block; 
+    cursor: pointer;
+}
 
-#login-drop
-{
+#login-drop {
 	display: none;
 	position: absolute;
     right: 0px;
@@ -54,7 +58,9 @@ body {
 	font-size: 14px;
 }
 
-#login-drop a:hover {background-color: rgb(220, 220, 220);} 
+#login-drop a:hover {
+    background-color: rgb(220, 220, 220);
+} 
 
 .movie-home {
     float: left;
@@ -99,4 +105,34 @@ body {
     margin: 20px;
     margin-top: 40px;
     color: rgb(0, 0, 0);
+}
+
+#all-shows {
+    padding-top: 40px;
+}
+
+#date {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 20px;
+    margin-bottom: 4px;
+}
+
+.show {
+    margin: 20px;
+    margin-top: 10px;
+    color: green;
+    height: 34px;
+    font-size: 16px;
+}
+
+.show:hover {
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+
+.clear {
+    clear: both;
 }
