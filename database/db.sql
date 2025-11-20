@@ -14,3 +14,11 @@ CREATE TABLE movies (
     name VARCHAR(100),
     poster VARCHAR(100)
 );
+
+CREATE TABLE shows (
+    show_id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE,
+    time TIME,
+    movie_id INT,
+    FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
+);
