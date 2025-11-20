@@ -40,7 +40,8 @@
 
     <div>
         <?php
-        $sql = "SELECT name, poster FROM movies";
+        $movieId = $_GET["movieId"];
+        $sql = "SELECT name, poster FROM movies WHERE movie_id = $movieId";
         if ($result = mysqli_query($conn, $sql)) {
             $row = mysqli_fetch_assoc($result);
         }

@@ -56,7 +56,7 @@
         ?>
 
         <form id="nextPage" method="get" action="movie.php" style="display: none;">
-            <input type="text" id="movieId">
+            <input type="text" name="movieId" id="movieId">
         </form>
     </div>
 
