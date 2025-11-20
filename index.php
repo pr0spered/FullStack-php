@@ -40,13 +40,13 @@
 
     <div id="main">
         <?php 
-        $sql = "SELECT name, poster FROM movies";
+        $sql = "SELECT movie_id, name, poster FROM movies";
         if ($result = mysqli_query($conn,$sql)) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="movie-home">
-                    <img src="'.$row["poster"].'">
-                    <div class="movie-home-name">'.$row["name"].'</div>
-                    </div>';
+                echo '<div class="movie-home" onclick="moviePage('.$row["movie_id"].')">
+                        <img src="'.$row["poster"].'">
+                        <div class="movie-home-name">'.$row["name"].'</div>
+                        </div>';
             }
         }
         else {
@@ -54,6 +54,17 @@
         }
         mysqli_close($conn);
         ?>
+
+        <form id="nextPage" method="get" action="movie.php" style="display: none;">
+            <input type="text" id="movieId">
+        </form>
     </div>
+
+    <script>
+        function moviePage(movieId) {
+            document.getElementById('movieId').value = movieId;
+            document.getElementById('nextPage').submit();
+        }
+    </script>
 </body>
 </html>
