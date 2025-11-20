@@ -55,7 +55,7 @@
         mysqli_close($conn);
         ?>
 
-        <form id="nextPage" method="get" action="movie.php" style="display: none;">
+        <form id="moviePage" method="get" action="movie.php" style="display: none;">
             <input type="text" name="movieId" id="movieId">
         </form>
     </div>
@@ -63,7 +63,7 @@
     <script>
         function moviePage(movieId) {
             document.getElementById('movieId').value = movieId;
-            document.getElementById('nextPage').submit();
+            document.getElementById('moviePage').submit();
         }
     </script>
 </body>
