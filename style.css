@@ -1,0 +1,86 @@
+body {
+    margin: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+    background-color: red;
+    height: 100px;
+}
+
+#logo {
+    float: left;
+    margin-left: 40px;
+    margin-top: 3px;
+}
+
+#logo a {
+    text-decoration: none;
+	color: rgb(0, 0, 0);
+	font-size: 80px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#login {
+    float: right;
+    margin-right: 40px;
+    margin-top: 50px;
+    position: relative;
+}
+
+#login a {
+    color: rgb(0, 0, 0);
+    font-size: 22px;
+}
+
+#login:hover {cursor: pointer;}
+
+#login:hover #login-drop {display: block; cursor: pointer;}
+
+#login-drop
+{
+	display: none;
+	position: absolute;
+    right: 0px;
+	background-color: whitesmoke;
+	min-width: 120px;
+	z-index: 1;
+}
+
+#login-drop a {
+	color: black;
+	padding: 12px 15px;
+	display: block;
+	font-size: 14px;
+}
+
+#login-drop a:hover {background-color: rgb(220, 220, 220);} 
+
+.movie-home {
+    float: left;
+    margin: 32px;
+    cursor: pointer;
+}
+
+.movie-home:hover {
+    opacity: 0.80;
+}
+
+.movie-home img {
+    width: 240px;
+    height: 340px;
+}
+
+.movie-home-name {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
