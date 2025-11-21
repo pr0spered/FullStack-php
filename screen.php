@@ -40,7 +40,8 @@
 
     <div>
         <?php
-        $sql = "SELECT movie_id, date, time FROM shows";
+        $showId = $_GET["showId"];
+        $sql = "SELECT movie_id, date, time FROM shows WHERE show_id = $showId";
         if ($result = mysqli_query($conn, $sql)) {
             $row = mysqli_fetch_assoc($result);
             $movieId = $row["movie_id"];
