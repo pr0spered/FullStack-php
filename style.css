@@ -4,7 +4,7 @@ body {
 }
 
 #header {
-    background-color: rgb(68, 31, 155);
+    background-color: red;
     height: 100px;
 }
 
@@ -142,4 +142,51 @@ body {
     font-size: 18px;
     margin: 15px;
     color: black;
+}
+
+.seat {
+    color: green;
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+    border: 1px solid green;
+    border-radius: 12px;
+    margin: 5px;
+}
+
+.space {
+    width: 40px;
+    height: 40px;
+    visibility: hidden;
+    margin: 5px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+#map {
+    overflow-x: scroll;
+    padding-bottom: 16px;
+}
+
+#movie-screen {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#screen-label {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+#screen {
+    background-color: grey;
+    width: 500px;
+    height: 5px;
+    margin: 0 auto;
+    margin-bottom: 50px;
 }
