@@ -75,11 +75,22 @@
                     $temp = $show_date;
                 }
                 $show_time = date("h:i A", strtotime($row['date'] . " " . $row['time']));
-                echo '<button class="show" id='.$row["show_id"].'>'.$show_time.'</button>';
+                echo '<button class="show" onclick="screenPage('.$row["show_id"].')">'.$show_time.'</button>';
             }
         }
         mysqli_close($conn);
         ?>
     </div>
+
+    <form id="screening" method="get" action="screen.php" style="display: none;">
+        <input type="text" name="showId" id="showId">
+    </form>
 </body>
+
+<script>
+    function screenPage(showTime) {
+        document.getElementById("showId").value = showTime;
+        document.getElementById("screening").submit();
+    }
+</script>
 </html>
