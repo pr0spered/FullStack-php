@@ -4,7 +4,7 @@ body {
 }
 
 #header {
-    background-color: red;
+    background-color: rgb(68, 31, 155);
     height: 100px;
 }
 
@@ -135,4 +135,11 @@ body {
 
 .clear {
     clear: both;
+}
+
+#info {
+    font-weight: normal;
+    font-size: 18px;
+    margin: 15px;
+    color: black;
 }
