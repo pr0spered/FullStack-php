@@ -41,12 +41,13 @@
     <div>
         <?php
         $showId = $_GET["showId"];
-        $sql = "SELECT movie_id, date, time FROM shows WHERE show_id = $showId";
+        $sql = "SELECT movie_id, date, time, screen_id FROM shows WHERE show_id = $showId";
         if ($result = mysqli_query($conn, $sql)) {
             $row = mysqli_fetch_assoc($result);
             $movieId = $row["movie_id"];
             $date = date("j M, D", strtotime($row['date']));
             $time = date("h:i A", strtotime($row['date'] . " " . $row['time']));
+            $screenId = $row["screen_id"];
         }
         else {
             echo '<p>Error: Cannot Execute Query</p>';
@@ -60,11 +61,28 @@
         else {
             echo '<p>Error: Cannot Execute Query</p>';
         }
+
+        $sql = "SELECT name, seat_map FROM screens WHERE screen_id = $screenId";
+        if ($result = mysqli_query($conn, $sql)) {
+            $row = mysqli_fetch_assoc($result);
+            $screen_name = $row["name"];
+            $map = $row["seat_map"];
+        }
+
         mysqli_close($conn);
         ?>
 
         <div id="info">
             <?php echo "$movie_name <br> $date $time"; ?>
+        </div>
+
+        <div id="movie-screen">
+            <p id="screen-label">Screen This Way!</p>
+            <div id="screen"></div>
+        </div>
+
+        <div id="map">
+            <?php echo $map; ?>
         </div>
     </div>
 
