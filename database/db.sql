@@ -31,3 +31,11 @@ CREATE TABLE shows (
     FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
     FOREIGN KEY (screen_id) REFERENCES screens(screen_id),
 );
+
+CREATE TABLE tickets (
+    ticket_id INT AUTO_INCREMENT PRIMARY KEY,
+    seat_number VARCHAR(100),
+    show_id INT,
+    FOREIGN KEY (show_id) REFERENCES shows(show_id),
+    UNIQUE(seat_number, show_id)
+);
