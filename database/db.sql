@@ -15,11 +15,19 @@ CREATE TABLE movies (
     poster VARCHAR(100)
 );
 
+CREATE TABLE theatres (
+    theatre_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    address VARCHAR(255)
+);
+
 CREATE TABLE screens (
     screen_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
     capacity INT,
-    seat_map LONGTEXT
+    seat_map LONGTEXT,
+    theatre_id INT,
+    FOREIGN KEY (theatre_id) REFERENCES theatres(theatre_id)
 );
 
 CREATE TABLE shows (
