@@ -51,6 +51,7 @@
             <input type="password" placeholder="Password..." id="login-password" name="password" required>
             <input type="submit" id="login-button" name="submit" value="Login">
             <span class="error"><?php echo @$error ?></span>
+            <a href="register.php" class="signup">Don't have an account?</a>
         </form>
     </div>
 </body>
