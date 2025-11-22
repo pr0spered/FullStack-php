@@ -27,7 +27,7 @@
                 echo '  <a>'.htmlspecialchars($username).'</a>
                         <div id="login-drop">
                             <a>Bookings</a>
-                            <a>Logout</a>
+                            <a href="logout.php">Logout</a>
                         </div>';
 
             }
