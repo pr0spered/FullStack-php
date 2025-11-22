@@ -62,11 +62,24 @@
             echo '<p>Error: Cannot Execute Query</p>';
         }
 
-        $sql = "SELECT name, seat_map FROM screens WHERE screen_id = $screenId";
+        $sql = "SELECT name, seat_map, theatre_id FROM screens WHERE screen_id = $screenId";
         if ($result = mysqli_query($conn, $sql)) {
             $row = mysqli_fetch_assoc($result);
             $screen_name = $row["name"];
             $map = $row["seat_map"];
+            $theatreId = $row["theatre_id"];
+        }
+        else {
+            echo '<p>Error: Cannot Execute Query</p>';
+        }
+
+        $sql = "SELECT name FROM theatres WHERE theatre_id = $theatreId";
+        if ($result = mysqli_query($conn, $sql)) {
+            $row = mysqli_fetch_assoc($result);
+            $theatreName = $row["name"];
+        }
+        else {
+            echo '<p>Error: Cannot Execute Query</p>';
         }
 
         $bookedSeats = "";
@@ -109,6 +122,16 @@
             }
             document.getElementById(seat).className = "seat booked";
             i = i+1;
+        }
+
+        function clicked(str) {
+            obj = document.getElementById(str);
+            if (obj.className == "seat available") {
+                obj.className = "seat clicked";
+            }
+            else if (obj.className == "seat clicked") {
+                obj.className = "seat available";
+            }
         }
     </script>
 
