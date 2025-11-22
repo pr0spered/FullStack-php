@@ -10,6 +10,12 @@
 </head>
 
 <body>
+
+    <?php 
+    include "db.php";
+    session_start();
+    ?>
+
     <div id="header">
         <div id="logo">
             <a href="index.php">BoxOffice</a>
@@ -17,9 +23,6 @@
     </div>
 
     <?php 
-    include "db.php";
-    session_start();
-
     if (@$_POST["submit"]) {
         $password = md5($_POST["password"]);
         $email = mysqli_real_escape_string($conn, filter_var($_POST["email"], FILTER_SANITIZE_EMAIL));
