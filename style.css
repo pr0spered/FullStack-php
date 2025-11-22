@@ -4,7 +4,7 @@ body {
 }
 
 #header {
-    background-color: red;
+    background-color: rgb(24, 34, 173);
     height: 100px;
 }
 
@@ -189,4 +189,14 @@ body {
     height: 5px;
     margin: 0 auto;
     margin-bottom: 50px;
+}
+
+.booked {
+    background: darkgray;
+    color: white;
+    border-color: darkgrey;
+}
+
+.available:hover{
+    cursor: pointer;
 }
