@@ -69,6 +69,17 @@
             $map = $row["seat_map"];
         }
 
+        $bookedSeats = "";
+        $sql = "SELECT seat_number FROM tickets WHERE show_id = $showId";
+        if ($result = mysqli_query($conn, $sql)) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $bookedSeats = $bookedSeats . $row["seat_number"] . ",";
+            }
+        }
+        else {
+            echo '<p>Error: Cannot Execute Query</p>';
+        }
+
         mysqli_close($conn);
         ?>
 
@@ -85,6 +96,21 @@
             <?php echo $map; ?>
         </div>
     </div>
+
+    <script>
+        booked = "<?php echo $bookedSeats; ?>";
+        n = booked.length;
+        i = 0;
+        while (i < n) {
+            seat = "";
+            while (booked.charAt(i) != ",") {
+                seat = seat + booked.charAt(i);
+                i = i+1;
+            }
+            document.getElementById(seat).className = "seat booked";
+            i = i+1;
+        }
+    </script>
 
 </body>
 </html>
