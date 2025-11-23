@@ -23,6 +23,11 @@
         $types = $_GET["types"];
         $paymentMethod = $_POST["paymentMethod"];
         $seatArray = explode(',', $seats);
+
+        $sql = "DELETE FROM locks WHERE user_id = $userId AND show_id = $showId";
+        if (!mysqli_query($conn, $sql)) {
+        echo '<p>Error: Cannot Execute Query</p>';
+        }
         
         $sql =  "INSERT INTO transactions (payment_method, user_id) VALUES ('$paymentMethod', $userId)";
         if (!mysqli_query($conn, $sql)) {
