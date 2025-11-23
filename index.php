@@ -26,7 +26,7 @@
             if (isset($_SESSION["username"])) {
                 echo '  <a>'.htmlspecialchars($username).'</a>
                         <div id="login-drop">
-                            <a>Bookings</a>
+                            <a href="tickets.php">Bookings</a>
                             <a href="logout.php">Logout</a>
                         </div>';
 
