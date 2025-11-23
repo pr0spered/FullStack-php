@@ -394,3 +394,23 @@ body {
 .section-title {
     margin: 15px;
 }
+
+.booked-title {
+    margin-left: 50px;
+    font-size: 28px;
+}
+
+#booked-tickets {
+    margin-left: 50px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 8px;
+    width: 600px;
+}
+
+#booked-tickets p {
+    margin: 12px 0;
+    color: whitesmoke;
+    font-size: 16px;
+}
