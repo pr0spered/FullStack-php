@@ -105,17 +105,37 @@ for($i=0; $i<$n; $i++) {
 }
 mysqli_close($conn);
 
-echo "<div id='ticket'>
-        <h2 class = review>Review Seats!</h2>
-        <p>$movie_name</p>
-        <p>$theatre_name $screen_name</p>
-        <p>$date &nbsp; $time</p>
-        <p>Total Amount: &#8377;$amount</p>
-        <p>";
-        for ($i=0; $i<$n; $i++) {
-            echo "$seatArray[$i] ($typeArray[$i])<br>";
-        }
-echo "</p>
-        <a href='screen.php?showId=" .$showId. "' class='diff-seat'>Select different seats?</a><br>
-        <a href='payment.php?showId=" . $showId . "&userId=" . $userId . "&seats=" . urlencode($seats) . "&prices=" . urlencode($prices) . "&types=" . urlencode($types) . "' id='book-button' class='button'>Pay Now</a>
+if (!isset($_GET["payed"])) {
+    echo "<div id='ticket'>
+            <h2 class = review>Review Seats!</h2>
+            <p>$movie_name</p>
+            <p>$theatre_name $screen_name</p>
+            <p>$date &nbsp; $time</p>
+            <p>Total Amount: &#8377;$amount</p>
+            <p>";
+            for ($i=0; $i<$n; $i++) {
+                echo "$seatArray[$i] ($typeArray[$i])<br>";
+            }
+    echo "</p>
+            <a href='screen.php?showId=" .$showId. "' class='signup'>Select different seats?</a><br>
+            <a href='payment.php?showId=" . $showId . "&userId=" . $userId . "&seats=" . urlencode($seats) . "&prices=" . urlencode($prices) . "&types=" . urlencode($types) . "' id='book-button' class='button'>Pay Now</a>
+            </div>";
+}
+
+if (isset($_GET["payed"]) && $_GET["payed"] == true) {
+    $transaction_id = $_GET["transactionId"];
+    echo "<div id='ticket'>
+            <h2 class = review>Tickets booked successfully!</h2>
+            <p id='transaction'>Transaction ID: $transaction_id</p>
+            <p>$movie_name</p>
+            <p>$theatre_name $screen_name</p>
+            <p>$date &nbsp; $time</p>
+            <p>Total Amount: &#8377;$amount</p>
+            <p>";
+            for ($i=0; $i<$n; $i++) {
+                echo "$seatArray[$i] ($typeArray[$i])<br>";
+            }
+    echo "</p>
+        <a href='index.php'>Home Page</a><br>
         </div>";
+}
