@@ -40,10 +40,20 @@ CREATE TABLE shows (
     FOREIGN KEY (screen_id) REFERENCES screens(screen_id),
 );
 
+CREATE TABLE transactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    payment_method VARCHAR(100),
+    date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 CREATE TABLE tickets (
     ticket_id INT AUTO_INCREMENT PRIMARY KEY,
     seat_number VARCHAR(100),
     show_id INT,
+    transaction_id INT,
     FOREIGN KEY (show_id) REFERENCES shows(show_id),
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
     UNIQUE(seat_number, show_id)
 );
