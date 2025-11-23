@@ -57,3 +57,13 @@ CREATE TABLE tickets (
     FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id),
     UNIQUE(seat_number, show_id)
 );
+
+CREATE TABLE locks (
+    lock_id INT AUTO_INCREMENT PRIMARY KEY,
+    seat_number VARCHAR(100),
+    user_id INT,
+    show_id INT,
+    locking_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (show_id) REFERENCES shows(show_id)
+)
