@@ -66,4 +66,7 @@ CREATE TABLE locks (
     locking_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (show_id) REFERENCES shows(show_id)
-)
+);
+
+SET GLOBAL event_scheduler = 'ON';
+CREATE EVENT clear_locks ON SCHEDULE EVERY 1 MINUTE DO DELETE FROM locks WHERE locking_time < (NOW() - INTERVAL 5 MINUTE);
