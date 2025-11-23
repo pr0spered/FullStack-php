@@ -14,6 +14,7 @@
     include 'db.php';
     session_start();
     $username = @$_SESSION["username"];
+    $userId = 0;
     ?>
 
     <div id="header">
@@ -24,6 +25,7 @@
         <div id="login">
             <?php 
             if (isset($_SESSION["username"])) {
+                $userId = @$_SESSION["userid"];
                 echo '  <a>'.htmlspecialchars($username).'</a>
                         <div id="login-drop">
                             <a>Bookings</a>
@@ -38,7 +40,7 @@
         </div>
     </div>
 
-    <div>
+    <div id="movie-screen">
         <?php
         $showId = $_GET["showId"];
         $sql = "SELECT movie_id, date, time, screen_id FROM shows WHERE show_id = $showId";
@@ -100,14 +102,19 @@
             <?php echo "$movie_name <br> $date $time"; ?>
         </div>
 
+        <div id="map">
+            <?php echo $map; ?>
+        </div>
+
         <div id="movie-screen">
             <p id="screen-label">Screen This Way!</p>
             <div id="screen"></div>
         </div>
 
-        <div id="map">
-            <?php echo $map; ?>
+        <div>
+            <button id="review-button" onclick="book()">Review Selection</button>
         </div>
+
     </div>
 
     <script>
@@ -131,6 +138,47 @@
             }
             else if (obj.className == "seat clicked") {
                 obj.className = "seat available";
+            }
+        }
+
+        function book() {
+            userid = "<?php echo $userId; ?>";
+            showid = "<?php echo $showId; ?>";
+            if (userid != 0) {
+                selected = document.getElementsByClassName("seat clicked");
+                n = selected.length;
+                seats = "";
+                types = "";
+                prices = "";
+                for (i=0; i<n; i++) {
+                    seats = seats + selected[i].id;
+                    types = types + selected[i].dataset.class;
+                    prices = prices + selected[i].dataset.price;
+                    if (i != n-1) {
+                        seats = seats + ",";
+                        types = types + ",";
+                        prices = prices + ",";
+                    }
+                }
+                if (seats != "") {
+                    if (window.XMLHttpRequest) {
+                        xmlhttp = new XMLHttpRequest();
+                    }
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("movie-screen").innerHTML = this.responseText;
+                        }
+                    }
+                    xmlhttp.open("GET", "booking.php?seats=" + encodeURIComponent(seats) + "&types=" + encodeURIComponent(types) + "&prices=" + encodeURIComponent(prices) + "&userId=" + encodeURIComponent(userid) + "&showId=" + encodeURIComponent(showid), true);
+                    xmlhttp.send();
+                }
+                else {
+                    window.alert("Please select your saeats!")
+                }
+            }
+            else {
+                window.alert("Please login to your account");
+                window.location.href = "login.php";
             }
         }
     </script>
