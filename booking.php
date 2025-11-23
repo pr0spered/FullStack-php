@@ -106,6 +106,14 @@ for($i=0; $i<$n; $i++) {
 mysqli_close($conn);
 
 if (!isset($_GET["payed"])) {
+    include "db.php";
+    $n = count($seatArray);
+    for($i=0; $i<$n; $i++) {
+        $sql = "INSERT INTO locks (seat_number, user_id, show_id) VALUES ('$seatArray[$i]', $userId, $showId)";
+        mysqli_query($conn, $sql);
+    }
+    mysqli_close($conn);
+
     echo "<div id='ticket'>
             <h2 class = review>Review Seats!</h2>
             <p>$movie_name</p>
