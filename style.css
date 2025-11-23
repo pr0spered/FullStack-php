@@ -290,7 +290,7 @@ body {
     cursor: pointer;
 }
 
-#ticket{
+#ticket {
     background: lightgrey;
     margin: 20px auto;
     padding: 40px;
@@ -379,4 +379,14 @@ body {
 #book-button:hover {
     cursor: pointer;
     opacity: 0.9;
+}
+
+#confirm {
+    background: lightgrey;
+    margin: 20px auto;
+    padding: 40px;
+    border-radius: 35px;
+    width: 50%;
+    text-align: center;
+    font-size: 17px;
 }
