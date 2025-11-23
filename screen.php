@@ -183,7 +183,7 @@
                     xmlhttp1.send();
                 }
                 else {
-                    window.alert("Please select your saeats!")
+                    window.alert("Please select your seats!")
                 }
             }
             else {
