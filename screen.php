@@ -161,16 +161,26 @@
                     }
                 }
                 if (seats != "") {
-                    if (window.XMLHttpRequest) {
-                        xmlhttp = new XMLHttpRequest();
-                    }
-                    xmlhttp.onreadystatechange = function() {
+                    xmlhttp1 = new XMLHttpRequest();
+                    xmlhttp1.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            document.getElementById("movie-screen").innerHTML = this.responseText;
+                            lock = this.responseText.trim();
+                            if (lock == 1) {
+                            window.alert("Sorry, selected seats are unavailable at the moment");
+                            return;
+                            }
+                            xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    document.getElementById("movie-screen").innerHTML = this.responseText;
+                                }
+                            }
+                            xmlhttp.open("GET", "booking.php?seats=" + encodeURIComponent(seats) + "&types=" + encodeURIComponent(types) + "&prices=" + encodeURIComponent(prices) + "&userId=" + encodeURIComponent(userid) + "&showId=" + encodeURIComponent(showid), true);
+                            xmlhttp.send();
                         }
                     }
-                    xmlhttp.open("GET", "booking.php?seats=" + encodeURIComponent(seats) + "&types=" + encodeURIComponent(types) + "&prices=" + encodeURIComponent(prices) + "&userId=" + encodeURIComponent(userid) + "&showId=" + encodeURIComponent(showid), true);
-                    xmlhttp.send();
+                    xmlhttp1.open("GET", "lock.php?seats=" + encodeURIComponent(seats) + "&showId=" + encodeURIComponent(showid), true);
+                    xmlhttp1.send();
                 }
                 else {
                     window.alert("Please select your saeats!")
