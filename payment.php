@@ -20,6 +20,7 @@
         $showId = $_GET["showId"];
         $seats = $_GET["seats"];
         $prices = $_GET["prices"];
+        $amount = $_GET["amount"];
         $types = $_GET["types"];
         $paymentMethod = $_POST["paymentMethod"];
         $seatArray = explode(',', $seats);
@@ -29,7 +30,7 @@
         echo '<p>Error: Cannot Execute Query</p>';
         }
         
-        $sql =  "INSERT INTO transactions (payment_method, user_id) VALUES ('$paymentMethod', $userId)";
+        $sql =  "INSERT INTO transactions (payment_method, user_id, amount) VALUES ('$paymentMethod', $userId, $amount)";
         if (!mysqli_query($conn, $sql)) {
         echo '<p>Error: Cannot Execute Query</p>';
         }

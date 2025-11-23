@@ -126,7 +126,7 @@ if (!isset($_GET["payed"])) {
             }
     echo "</p>
             <a href='screen.php?showId=" .$showId. "' class='signup'>Select different seats?</a><br>
-            <a href='payment.php?showId=" . $showId . "&userId=" . $userId . "&seats=" . urlencode($seats) . "&prices=" . urlencode($prices) . "&types=" . urlencode($types) . "' id='book-button' class='button'>Pay Now</a>
+            <a href='payment.php?showId=" . $showId . "&userId=" . $userId . "&seats=" . urlencode($seats) . "&prices=" . urlencode($prices) . "&amount=" . urlencode($amount) . "&types=" . urlencode($types) . "' id='book-button' class='button'>Pay Now</a>
             </div>";
 }
 
