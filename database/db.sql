@@ -45,6 +45,7 @@ CREATE TABLE transactions (
     payment_method VARCHAR(100),
     date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     user_id INT,
+    amount INT,
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
