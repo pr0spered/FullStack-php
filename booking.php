@@ -124,11 +124,15 @@ if (!isset($_GET["payed"])) {
 
 if (isset($_GET["payed"]) && $_GET["payed"] == true) {
     $transaction_id = $_GET["transactionId"];
-    echo "<div id='ticket'>
-            <h2 class = review>Tickets booked successfully!</h2>
-            <p id='transaction'>Transaction ID: $transaction_id</p>
-            <p>$movie_name</p>
-            <p>$theatre_name $screen_name</p>
+    echo "<head>
+            <link rel='stylesheet' href='style.css'>
+            </head>
+            <body>
+            <div id='confirm'>
+            <h2>Tickets booked successfully!</h2>
+            <p>Transaction ID: $transaction_id</p>
+            <p>Movie: $movie_name</p>
+            <p>$theatre_name, $screen_name</p>
             <p>$date &nbsp; $time</p>
             <p>Total Amount: &#8377;$amount</p>
             <p>";
@@ -136,6 +140,7 @@ if (isset($_GET["payed"]) && $_GET["payed"] == true) {
                 echo "$seatArray[$i] ($typeArray[$i])<br>";
             }
     echo "</p>
-        <a href='index.php'>Home Page</a><br>
-        </div>";
+            <a href='index.php'>Home Page</a><br>
+            </div>
+            </body>";
 }
