@@ -117,4 +117,5 @@ echo "<div id='ticket'>
         }
 echo "</p>
         <a href='screen.php?showId=" .$showId. "' class='diff-seat'>Select different seats?</a><br>
+        <a href='payment.php?showId=" . $showId . "&userId=" . $userId . "&seats=" . urlencode($seats) . "&prices=" . urlencode($prices) . "&types=" . urlencode($types) . "' id='book-button' class='button'>Pay Now</a>
         </div>";
