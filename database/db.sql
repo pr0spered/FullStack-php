@@ -71,3 +71,12 @@ CREATE TABLE locks (
 
 SET GLOBAL event_scheduler = 'ON';
 CREATE EVENT clear_locks ON SCHEDULE EVERY 1 MINUTE DO DELETE FROM locks WHERE locking_time < (NOW() - INTERVAL 5 MINUTE);
+
+CREATE TABLE ratings (
+    user_id INT,
+    movie_id INT,
+    rating INT,
+    PRIMARY KEY (user_id, movie_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
+);
