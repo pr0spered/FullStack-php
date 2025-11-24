@@ -28,7 +28,7 @@
                 $userId = @$_SESSION["userid"];
                 echo '  <a>'.htmlspecialchars($username).'</a>
                         <div id="login-drop">
-                            <a href="tickets.php>Bookings</a>
+                            <a href="tickets.php">Bookings</a>
                             <a href="logout.php">Logout</a>
                         </div>';
 

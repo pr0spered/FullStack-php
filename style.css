@@ -411,7 +411,7 @@ body {
 
 #booked-tickets p {
     margin: 12px 0;
-    color: whitesmoke;
+    color: black;
     font-size: 16px;
 }
 
@@ -456,6 +456,15 @@ body {
 
 #rating a {
     text-decoration: none;
+    font-weight: normal;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+
+#rating a:hover {
+    background-color: grey;
 }
 
 #rating #star {
