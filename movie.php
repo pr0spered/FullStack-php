@@ -14,6 +14,7 @@
     include 'db.php';
     session_start();
     $username = @$_SESSION["username"];
+    $userId = 0;
     ?>
 
     <div id="header">
@@ -24,6 +25,7 @@
         <div id="login">
             <?php 
             if (isset($_SESSION["username"])) {
+                $userId = @$_SESSION["userid"];
                 echo '  <a>'.htmlspecialchars($username).'</a>
                         <div id="login-drop">
                             <a href="tickets.php>Bookings</a>
@@ -44,6 +46,32 @@
         $sql = "SELECT name, poster FROM movies WHERE movie_id = $movieId";
         if ($result = mysqli_query($conn, $sql)) {
             $row = mysqli_fetch_assoc($result);
+            $movieName = $row["name"];
+            $poster = $row["poster"];
+        }
+        else {
+            echo '<p>Error: Cannot execute Query</p>';
+        }
+
+        $sql = "SELECT AVG(rating) AS avg_rating, COUNT(rating) as votes FROM ratings WHERE movie_id = $movieId";
+        if ($result = mysqli_query($conn, $sql)) {
+            $row = mysqli_fetch_assoc($result);
+            $rating = round($row["avg_rating"], 1);
+            $num = $row["votes"];
+        }
+        else {
+            echo '<p>Error: Cannot execute Query</p>';
+        }
+
+        $sql = "SELECT rating FROM ratings WHERE user_id = $userId AND movie_id = $movieId";
+        if ($result = mysqli_query($conn, $sql)) {
+            if ($row = mysqli_fetch_assoc($result)) {
+                $userRating = $row["rating"];
+                $userRated = true;
+            }
+            else {
+                $userRated = false;
+            }
         }
         else {
             echo '<p>Error: Cannot execute Query</p>';
@@ -52,13 +80,30 @@
     </div>
 
     <div id="movie">
-        <img src="<?php echo $row['poster'] ?>">
+        <img src="<?php echo $poster; ?>">
     </div>
 
     <div id="details">
         <?php
-        echo '<p>'.$row["name"].'</p>';
+        echo '<p>'.$movieName.'</p>';
         ?>
+
+        <div id="rating">
+            <p><span><?php echo $rating; ?></span>&nbsp;<span id="star">&#9733;</span> &nbsp; (<?php echo $num; ?> votes)</p>
+            <div id="slider-container">
+                <?php 
+                if ($userRated) {
+                    echo "<p>Your rating: <span>$userRating</span></p>";
+                }
+                else {
+                    echo "<p>Rate movie:</p>
+                            <p>
+                                <input type='range' min='0' max='5' step='1' id='slider'>&nbsp; <span id='output'></span> &nbsp; <a href='javascript:rateMovie()'>Rate</a>
+                            </p>";
+                }
+                ?>
+            </div>
+        </div>
     </div>
 
     <div class="clear"></div>
@@ -91,6 +136,31 @@
     function screenPage(showTime) {
         document.getElementById("showId").value = showTime;
         document.getElementById("screening").submit();
+    }
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+    function rateMovie() {
+        userId = <?php echo $userId; ?>;
+        movieId = <?php echo $movieId; ?>;
+        if (userId != 0) {
+            givenRating = slider.value;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("rating").innerHTML = this.responseText;
+                }
+            }
+            xmlhttp.open("GET","rating.php?userId=" + encodeURIComponent(userId) + "&movieId=" + encodeURIComponent(movieId) + "&rating=" + encodeURIComponent(givenRating), true);
+            xmlhttp.send();
+        }
+        else {
+            alert("Please login before rating")
+        }
     }
 </script>
 </html>
