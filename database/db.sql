@@ -37,7 +37,7 @@ CREATE TABLE shows (
     movie_id INT,
     screen_id INT,
     FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
-    FOREIGN KEY (screen_id) REFERENCES screens(screen_id),
+    FOREIGN KEY (screen_id) REFERENCES screens(screen_id)
 );
 
 CREATE TABLE transactions (
