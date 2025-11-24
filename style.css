@@ -440,3 +440,25 @@ body {
     cursor: pointer;
     background-color: lightgray;
 }
+
+#rating p {
+    font-size: 28px;
+}
+
+#slider{
+    vertical-align: text-top;
+}
+
+#slider-container p {
+    font-size: 20px;
+    margin-top: 0px;
+}
+
+#rating a {
+    text-decoration: none;
+}
+
+#rating #star {
+    font-size: 30px;
+    color: gold;
+}
