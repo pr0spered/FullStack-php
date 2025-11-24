@@ -34,3 +34,25 @@ The following features are implemented
 - MySQL database for storing users, movies, transactions, tickets, shows, screens, theatres, locked seats and ratings.
 - Proper relation between tables ensure consistency and accuracy of data.
 - Implements seat locking mechanism with an event to release locked seats.
+
+## Screenshots
+
+Homepage:
+
+![Home](https://github.com/pr0spered/FullStack-php/raw/main/images/home.png)
+
+Movie Page:
+
+![Movie](https://github.com/pr0spered/FullStack-php/raw/main/images/movie.png)
+
+Movie Screen:
+
+![Screen](https://github.com/pr0spered/FullStack-php/raw/main/images/screen.png)
+
+Bookings:
+
+![Bookings](https://github.com/pr0spered/FullStack-php/raw/main/images/tickets.png)
+
+Payment Page:
+
+![Payment](https://github.com/pr0spered/FullStack-php/raw/main/images/payment.png)
