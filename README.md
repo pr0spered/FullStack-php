@@ -3,7 +3,7 @@
 ## Overview
 
 This is a full-stack ticket booking application built using HTML, CSS, PHP, JavaScript and MySQL. 
-It allows users to search for movies, select and review seats, book tickets, simulate payments, rate movies, view their booking history, etc. The project demonstrates a modular architecture suitable for web-based applications with dynamic user interactions.
+It allows users to search for movies, select and review seats, book tickets, simulate payments, rate movies, view their booking history, etc. The project showcases a web-based application with dynamic user interactions.
 
 ---
 
@@ -11,12 +11,12 @@ It allows users to search for movies, select and review seats, book tickets, sim
 
 The following features are implemented
 
-**User Management:** Register new users, login and logout.
-**Search:** Search for movies by their name.
-**Seat Selection:** Choose seats and review them before booking. Booked tickets are made unavailable. Seats are locked during review and automatically released after 5 minutes.
-**Manage Tickets:** Book tickets and view booked tickets history. Ticket confirmation once booking is completed.
-**Payment Simulation:** Pay via UPI or card through a simulated payment gateway.
-**Movie Rating:** Rate movies and view overall movie ratings.
+- **User Management:** Register new users, login and logout.
+- **Search:** Search for movies by their name.
+- **Seat Selection:** Choose seats and review them before booking. Booked tickets are made unavailable. Seats are locked during review and automatically released after 5 minutes.
+- **Manage Tickets:** Book tickets and view booked tickets history. Ticket confirmation once booking is completed.
+- **Payment Simulation:** Pay via UPI or card through a simulated payment gateway.
+- **Movie Rating:** Rate movies and view overall movie ratings.
 
 ## Architecture
 
