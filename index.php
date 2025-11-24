@@ -36,11 +36,24 @@
             }
             ?>
         </div>
+
+        <div id="search">
+            <form method="get" action="index.php">
+                <input class="search" type="text" name="search" placeholder="Search movies..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
     </div>
 
     <div id="main">
         <?php 
-        $sql = "SELECT movie_id, name, poster FROM movies";
+
+        $search = "";
+        if (isset($_GET['search'])) {
+            $search = " WHERE name LIKE '%" . $_GET['search'] . "%'";
+        }
+
+        $sql = "SELECT movie_id, name, poster FROM movies" . $search;
         if ($result = mysqli_query($conn,$sql)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="movie-home" onclick="moviePage('.$row["movie_id"].')">
