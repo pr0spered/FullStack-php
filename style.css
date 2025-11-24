@@ -414,3 +414,29 @@ body {
     color: whitesmoke;
     font-size: 16px;
 }
+
+#search {
+    position: absolute;
+    left: 50%;
+    top: 45px;
+    transform: translateX(-50%);
+}
+
+#search input {
+    padding: 8px;
+    font-size: 15px;
+    width: 350px;
+    background: whitesmoke;
+}
+
+#search button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background: white;
+    color: black;
+}
+
+#search button:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
