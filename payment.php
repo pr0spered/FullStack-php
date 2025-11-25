@@ -57,7 +57,7 @@
         $theatre_name = $row["theatre_name"];
         $screen_name = $row["screen_name"];
         $poster = $row["poster"];
-        $show_time = date("h:i A", strtotime($row["show_time"] . " " . $row["show_time"]));
+        $show_time = date("h:i A", strtotime($row["show_date"] . " " . $row["show_time"]));
         $show_date = date_format(date_create($row["show_date"]), "l, j M Y");
 
         $sql ="SELECT email, name FROM users WHERE user_id = $userId";
