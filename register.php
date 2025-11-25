@@ -45,7 +45,7 @@
         <form method="post">
             <h3>Create a new account</h3>
             <input type="email" placeholder="Email..." name="email" value="<?php echo @$email; ?>" id="register-email" required>
-            <input type="text" placeholder="Name..." name="name" value="<?php echo @$name; ?>" id="register-name" pattern="[A-Za-z ]" required>
+            <input type="text" placeholder="Name..." name="name" value="<?php echo @$name; ?>" id="register-name" pattern="[A-Za-z ]+" required>
             <input type="password" placeholder="Password..." name="password" id="register-password" required>
             <input type="submit" id="register-button" name="submit" value="Sign Up">
             <span class="error"><?php echo @$error; ?></span>
