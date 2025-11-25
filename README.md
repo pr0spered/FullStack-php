@@ -15,6 +15,7 @@ The following features are implemented
 - **Search:** Search for movies by their name.
 - **Seat Selection:** Choose seats and review them before booking. Booked tickets are made unavailable. Seats are locked during review and automatically released after 5 minutes.
 - **Manage Tickets:** Book tickets and view booked tickets history. Ticket confirmation once booking is completed.
+- **Confirmation Email:** After payment is completed, a confirmation email containing the ticket and movie details is sent to the user.
 - **Payment Simulation:** Pay via UPI or card through a simulated payment gateway.
 - **Movie Rating:** Rate movies and view overall movie ratings.
 
@@ -34,6 +35,9 @@ The following features are implemented
 - MySQL database for storing users, movies, transactions, tickets, shows, screens, theatres, locked seats and ratings.
 - Proper relation between tables ensure consistency and accuracy of data.
 - Implements seat locking mechanism with an event to release locked seats.
+
+## Test Data
+`test_data.sql` is included which can be used to populate the database with sample data. This file contains example records that demonstrate how the application works. All test users included in test_data.sql use the password test@123.
 
 ## Screenshots
 
