@@ -10,9 +10,14 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     include "db.php";
     session_start();
+
+    require __DIR__ . '/vendor/autoload.php';
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
     $paymentMethod = isset($_POST["paymentMethod"]) ? $_POST["paymentMethod"] : '';
     
     if (isset($_POST["paymentCard"]) || isset($_POST["paymentUpi"])) {
@@ -44,6 +49,54 @@
             echo '<p>Error: Cannot Execute Query</p>';
             }
 	    }
+
+        $sql = "SELECT movies.name as movie_name, movies.poster as poster, theatres.name as theatre_name, shows.date as show_date, shows.time as show_time, screens.name as screen_name FROM tickets INNER JOIN shows ON tickets.show_id = shows.show_id INNER JOIN movies ON shows.movie_id = movies.movie_id INNER JOIN screens ON shows.screen_id = screens.screen_id INNER JOIN theatres ON screens.theatre_id = theatres.theatre_id WHERE shows.show_id = $showId LIMIT 1";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $movie_name = $row["movie_name"];
+        $theatre_name = $row["theatre_name"];
+        $screen_name = $row["screen_name"];
+        $poster = $row["poster"];
+        $show_time = date("h:i A", strtotime($row["show_time"] . " " . $row["show_time"]));
+        $show_date = date_format(date_create($row["show_date"]), "l, j M Y");
+
+        $sql ="SELECT email, name FROM users WHERE user_id = $userId";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $email = $row["email"];
+        $name = $row["name"];
+
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = '<email>'; //Replace <email> with your email
+        $mail->Password = '<pass>'; //Replace <pass> with your password
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        $mail->setFrom('<email>', 'Box Office'); //Replace <email> with your email
+        $mail->addAddress($email, $name);
+        $mail->addEmbeddedImage($poster, 'poster');
+
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Ticket Booking Confirmation';
+        $mail->Body = "<h2>Booking Confirmed!</h2>
+                        <p>Hello <strong>$name</strong>,</p>
+                        <p>Your payment was successful. Here are your booking details:</p>
+                        <ul>
+                            <li><strong>Transaction ID:</strong> $transactionId</li>
+                            <li><strong>Movie:</strong> $movie_name</li>
+                            <li><strong>Theatre:</strong> $theatre_name,&nbsp;$screen_name</li>
+                            <li><strong>Show Date & Time:</strong> $show_date&nbsp;$show_time</li>
+                            <li><strong>Seats:</strong> $seats</li>
+                            <li><strong>Amount Paid:</strong> &#8377;$amount</li>
+                        </ul>
+                        <p>Enjoy the show!</p>
+                        <img src='cid:poster' style='width:100%; max-width:400px; height:auto; display:block; margin:10px 0;'>";
+        $mail->send();
+
         header("Location: booking.php?payed=true&transactionId=" . urlencode($transactionId) . "&showId=" . urlencode($showId) . "&userId=" . urlencode($userId) . "&seats=" . urlencode($seats) . "&prices=" . urlencode($prices) . "&types=" . urlencode($types));
     }
     ?>
