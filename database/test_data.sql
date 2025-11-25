@@ -2,10 +2,10 @@ USE box_office;
 
 -- Insert data into 'users' table
 INSERT INTO users (user_id, email, password, name) VALUES
-(1, 'rahul.verma@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Rahul'),
-(2, 'priya.sharma@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Priya'),
-(3, 'arjun.patel@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Arjun'),
-(4, 'rohit.kumar@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Rohit'),
+(1, 'rahul@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Rahul'),
+(2, 'priya@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Priya'),
+(3, 'arjun@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Arjun'),
+(4, 'rohit@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Rohit'),
 (5, 'kumar@gmail.com', 'ceb6c970658f31504a901b89dcd3e461', 'Kumar');
 
 -- Insert data into 'movies' table
